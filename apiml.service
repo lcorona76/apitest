@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn instance to server apiml http://127.0.0.1:8080
+After=network.target
+
+[Service]
+User=root
+Group=root
+WorkingDirectory=/opt/apiml/apiml
+Environment="PATH=/opt/apiml/apiml/bin"
+ExecStart=/opt/apiml/apiml/bin/gunicorn --workers 3 --bind 127.0.0.1:8080 -m 007 wsgi:app
+
+[Install]
+WantedBy=multi-user.target
